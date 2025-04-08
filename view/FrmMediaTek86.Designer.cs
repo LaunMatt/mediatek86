@@ -1,6 +1,6 @@
 ﻿namespace mediatek86
 {
-    partial class Form1
+    partial class FrmMediaTek86
     {
         /// <summary>
         /// Variable nécessaire au concepteur.
@@ -28,10 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // FrmMediaTek86
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.Name = "FrmMediaTek86";
+            this.Text = "MediaTek86";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
