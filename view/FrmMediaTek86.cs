@@ -10,9 +10,15 @@ using System.Windows.Forms;
 
 namespace mediatek86
 {
-    public partial class FrmMediaTek86 : Form
+    /// <summary>
+    /// Fenêtre de l'application où se déroulent les actions de l'utilisateur.
+    /// </summary>
+    public partial class FrmMediatek86 : Form
     {
-        public FrmMediaTek86()
+        /// <summary>
+        /// Méthode initialisant les composants de FrmMediatek86.
+        /// </summary>
+        public FrmMediatek86()
         {
             InitializeComponent();
         }

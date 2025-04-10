@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\mediatek86.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=9.2.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\MySQL\MySQL Connector NET 9.2\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,25 +51,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bddmanager\BddManager.cs" />
+    <Compile Include="dal\Access.cs" />
+    <Compile Include="model\absence.cs" />
+    <Compile Include="model\motif.cs" />
+    <Compile Include="model\personnel.cs" />
+    <Compile Include="model\responsable.cs" />
+    <Compile Include="model\service.cs" />
     <Compile Include="view\FrmConnexion.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="view\FrmConnexion.Designer.cs">
       <DependentUpon>FrmConnexion.cs</DependentUpon>
     </Compile>
-    <Compile Include="view\FrmMediaTek86.cs">
+    <Compile Include="view\FrmMediatek86.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="view\FrmMediaTek86.Designer.cs">
-      <DependentUpon>FrmMediaTek86.cs</DependentUpon>
+    <Compile Include="view\FrmMediatek86.Designer.cs">
+      <DependentUpon>FrmMediatek86.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="view\FrmConnexion.resx">
       <DependentUpon>FrmConnexion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="view\FrmMediaTek86.resx">
-      <DependentUpon>FrmMediaTek86.cs</DependentUpon>
+    <EmbeddedResource Include="view\FrmMediatek86.resx">
+      <DependentUpon>FrmMediatek86.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -89,10 +101,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bddmanager\" />
     <Folder Include="controller\" />
-    <Folder Include="dal\" />
-    <Folder Include="model\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

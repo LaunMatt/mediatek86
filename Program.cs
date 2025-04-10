@@ -6,6 +6,16 @@ using System.Windows.Forms;
 
 namespace mediatek86
 {
+    /// <summary>
+    /// Application MediaTek86
+    /// </summary>
+    internal class NamespaceDoc
+    {
+
+    }
+    /// <summary>
+    /// Classe servant de point d'entrée principal de l'application.
+    /// </summary>
     internal static class Program
     {
         /// <summary>
@@ -16,7 +26,7 @@ namespace mediatek86
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmMediaTek86());
+            Application.Run(new view.FrmConnexion());
         }
     }
 }

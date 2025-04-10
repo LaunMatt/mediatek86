@@ -1,6 +1,6 @@
 ﻿namespace mediatek86
 {
-    partial class FrmMediaTek86
+    partial class FrmMediatek86
     {
         /// <summary>
         /// Variable nécessaire au concepteur.
