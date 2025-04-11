@@ -52,11 +52,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="bddmanager\BddManager.cs" />
+    <Compile Include="controller\FrmConnexionController.cs" />
     <Compile Include="dal\Access.cs" />
+    <Compile Include="dal\ResponsableAccess.cs" />
     <Compile Include="model\absence.cs" />
     <Compile Include="model\motif.cs" />
     <Compile Include="model\personnel.cs" />
-    <Compile Include="model\responsable.cs" />
+    <Compile Include="model\Responsable.cs" />
     <Compile Include="model\service.cs" />
     <Compile Include="view\FrmConnexion.cs">
       <SubType>Form</SubType>
@@ -100,8 +102,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="controller\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

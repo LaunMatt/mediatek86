@@ -64,6 +64,7 @@
             // 
             this.txtPassword.Location = new System.Drawing.Point(72, 38);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(128, 20);
             this.txtPassword.TabIndex = 3;
             // 
@@ -75,6 +76,7 @@
             this.btnConnection.TabIndex = 4;
             this.btnConnection.Text = "Se connecter";
             this.btnConnection.UseVisualStyleBackColor = true;
+            this.btnConnection.Click += new System.EventHandler(this.btnConnection_Click);
             // 
             // FrmConnexion
             // 
