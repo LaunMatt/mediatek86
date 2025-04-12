@@ -52,7 +52,7 @@ namespace mediatek86.controller
         /// <summary>
         /// Demande d'ajout du personnel
         /// </summary>
-        /// <param name="developpeur">objet developpeur à ajouter</param>
+        /// <param name="personnel">objet personnel à ajouter</param>
         public void AddPersonnel(Personnel personnel)
         {
             personnelAccess.AddPersonnel(personnel);
@@ -65,6 +65,15 @@ namespace mediatek86.controller
         public void UpdatePersonnel(Personnel personnel)
         {
             personnelAccess.UpdatePersonnel(personnel);
+        }
+
+        /// <summary>
+        /// Demande de suppression du personnel
+        /// </summary>
+        /// <param name="personnel">objet personnel à supprimer</param>
+        public void DelPersonnel(Personnel personnel)
+        {
+            personnelAccess.DelPersonnel(personnel);
         }
     }
 }

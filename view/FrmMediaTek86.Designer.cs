@@ -131,6 +131,7 @@
             this.btnSupprimerPersonnel.TabIndex = 5;
             this.btnSupprimerPersonnel.Text = "Supprimer personnel";
             this.btnSupprimerPersonnel.UseVisualStyleBackColor = true;
+            this.btnSupprimerPersonnel.Click += new System.EventHandler(this.btnSupprimerPersonnel_Click);
             // 
             // btnAjoutAbsence
             // 
