@@ -168,5 +168,28 @@ namespace mediatek86
                 MessageBox.Show("Une ligne doit être sélectionnée.", "Information");
             }
         }
+
+        /// <summary>
+        ///  Demande de modification du personnel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnModifPersonnel_Click(object sender, EventArgs e)
+        {
+            if (dgvPersonnel.SelectedRows.Count > 0)
+            {
+                EnCoursDeModifPersonnel(true);
+                Personnel personnel = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
+                txtNom.Text = personnel.Nom;
+                txtPrenom.Text = personnel.Prenom;
+                txtTelephone.Text = personnel.Tel;
+                txtMail.Text = personnel.Mail;
+                cbxServicePersonnel.SelectedIndex = cbxServicePersonnel.FindStringExact(personnel.Service.Nom);
+            }
+            else
+            {
+                MessageBox.Show("Une ligne doit être sélectionnée.", "Information");
+            }
+        }
     }
 }

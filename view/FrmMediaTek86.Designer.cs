@@ -122,6 +122,7 @@
             this.btnModifPersonnel.TabIndex = 4;
             this.btnModifPersonnel.Text = "Modifier personnel";
             this.btnModifPersonnel.UseVisualStyleBackColor = true;
+            this.btnModifPersonnel.Click += new System.EventHandler(this.btnModifPersonnel_Click);
             // 
             // btnSupprimerPersonnel
             // 
