@@ -39,6 +39,8 @@
             this.btnModifAbsence = new System.Windows.Forms.Button();
             this.btnSupprimerAbsence = new System.Windows.Forms.Button();
             this.gbxAjoutModifPersonnel = new System.Windows.Forms.GroupBox();
+            this.cbxServicePersonnel = new System.Windows.Forms.ComboBox();
+            this.lblServicePersonnel = new System.Windows.Forms.Label();
             this.btnAnnulerPersonnel = new System.Windows.Forms.Button();
             this.btnEnregistrerPersonnel = new System.Windows.Forms.Button();
             this.txtMail = new System.Windows.Forms.TextBox();
@@ -58,8 +60,6 @@
             this.lblMotif = new System.Windows.Forms.Label();
             this.lblDateFin = new System.Windows.Forms.Label();
             this.lblDateDebut = new System.Windows.Forms.Label();
-            this.lblServicePersonnel = new System.Windows.Forms.Label();
-            this.cbxServicePersonnel = new System.Windows.Forms.ComboBox();
             this.btnGestionAbsence = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersonnel)).BeginInit();
             this.gbxPersonnel.SuspendLayout();
@@ -178,7 +178,24 @@
             this.gbxAjoutModifPersonnel.Size = new System.Drawing.Size(341, 191);
             this.gbxAjoutModifPersonnel.TabIndex = 9;
             this.gbxAjoutModifPersonnel.TabStop = false;
-            this.gbxAjoutModifPersonnel.Text = "Ajouter/Modifier du personnel";
+            this.gbxAjoutModifPersonnel.Text = "Ajouter du personnel";
+            // 
+            // cbxServicePersonnel
+            // 
+            this.cbxServicePersonnel.FormattingEnabled = true;
+            this.cbxServicePersonnel.Location = new System.Drawing.Point(70, 121);
+            this.cbxServicePersonnel.Name = "cbxServicePersonnel";
+            this.cbxServicePersonnel.Size = new System.Drawing.Size(256, 21);
+            this.cbxServicePersonnel.TabIndex = 16;
+            // 
+            // lblServicePersonnel
+            // 
+            this.lblServicePersonnel.AutoSize = true;
+            this.lblServicePersonnel.Location = new System.Drawing.Point(9, 126);
+            this.lblServicePersonnel.Name = "lblServicePersonnel";
+            this.lblServicePersonnel.Size = new System.Drawing.Size(43, 13);
+            this.lblServicePersonnel.TabIndex = 15;
+            this.lblServicePersonnel.Text = "Service";
             // 
             // btnAnnulerPersonnel
             // 
@@ -188,6 +205,7 @@
             this.btnAnnulerPersonnel.TabIndex = 14;
             this.btnAnnulerPersonnel.Text = "Annuler";
             this.btnAnnulerPersonnel.UseVisualStyleBackColor = true;
+            this.btnAnnulerPersonnel.Click += new System.EventHandler(this.btnAnnulerPersonnel_Click);
             // 
             // btnEnregistrerPersonnel
             // 
@@ -197,6 +215,7 @@
             this.btnEnregistrerPersonnel.TabIndex = 10;
             this.btnEnregistrerPersonnel.Text = "Enregistrer";
             this.btnEnregistrerPersonnel.UseVisualStyleBackColor = true;
+            this.btnEnregistrerPersonnel.Click += new System.EventHandler(this.btnEnregistrerPersonnel_Click);
             // 
             // txtMail
             // 
@@ -345,23 +364,6 @@
             this.lblDateDebut.Size = new System.Drawing.Size(75, 13);
             this.lblDateDebut.TabIndex = 0;
             this.lblDateDebut.Text = "Date de début";
-            // 
-            // lblServicePersonnel
-            // 
-            this.lblServicePersonnel.AutoSize = true;
-            this.lblServicePersonnel.Location = new System.Drawing.Point(9, 126);
-            this.lblServicePersonnel.Name = "lblServicePersonnel";
-            this.lblServicePersonnel.Size = new System.Drawing.Size(43, 13);
-            this.lblServicePersonnel.TabIndex = 15;
-            this.lblServicePersonnel.Text = "Service";
-            // 
-            // cbxServicePersonnel
-            // 
-            this.cbxServicePersonnel.FormattingEnabled = true;
-            this.cbxServicePersonnel.Location = new System.Drawing.Point(70, 121);
-            this.cbxServicePersonnel.Name = "cbxServicePersonnel";
-            this.cbxServicePersonnel.Size = new System.Drawing.Size(256, 21);
-            this.cbxServicePersonnel.TabIndex = 16;
             // 
             // btnGestionAbsence
             // 

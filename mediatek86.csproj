@@ -53,13 +53,16 @@
   <ItemGroup>
     <Compile Include="bddmanager\BddManager.cs" />
     <Compile Include="controller\FrmConnexionController.cs" />
+    <Compile Include="controller\FrmMediatek86Controller.cs" />
     <Compile Include="dal\Access.cs" />
+    <Compile Include="dal\PersonnelAccess.cs" />
     <Compile Include="dal\ResponsableAccess.cs" />
+    <Compile Include="dal\ServiceAccess.cs" />
     <Compile Include="model\absence.cs" />
     <Compile Include="model\motif.cs" />
-    <Compile Include="model\personnel.cs" />
+    <Compile Include="model\Personnel.cs" />
     <Compile Include="model\Responsable.cs" />
-    <Compile Include="model\service.cs" />
+    <Compile Include="model\Service.cs" />
     <Compile Include="view\FrmConnexion.cs">
       <SubType>Form</SubType>
     </Compile>
