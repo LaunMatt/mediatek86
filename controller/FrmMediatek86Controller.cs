@@ -18,9 +18,13 @@ namespace mediatek86.controller
         /// </summary>
         private readonly PersonnelAccess personnelAccess;
         /// <summary>
-        /// objet d'accès aux opérations possible sur Profil
+        /// objet d'accès aux opérations possible sur Service
         /// </summary>
         private readonly ServiceAccess serviceAccess;
+        /// <summary>
+        /// objet d'accès aux opérations possibles sur Absence
+        /// </summary>
+        private readonly AbsenceAccess absenceAccess;
 
         /// <summary>
         /// Récupère les acces aux données
@@ -29,6 +33,7 @@ namespace mediatek86.controller
         {
             personnelAccess = new PersonnelAccess();
             serviceAccess = new ServiceAccess();
+            absenceAccess = new AbsenceAccess();
         }
 
         /// <summary>
@@ -47,6 +52,15 @@ namespace mediatek86.controller
         public List<Service> GetLesServices()
         {
             return serviceAccess.GetLesServices();
+        }
+
+        /// <summary>
+        /// Récupère et retourne les infos des absences
+        /// </summary>
+        /// <returns>liste des développeurs</returns>
+        public List<Absence> GetLesAbsences(int idpersonnelselect)
+        {
+            return absenceAccess.GetLesAbsences(idpersonnelselect);
         }
 
         /// <summary>

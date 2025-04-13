@@ -30,6 +30,10 @@ namespace mediatek86
         /// </summary>
         private BindingSource bdgServices = new BindingSource();
         /// <summary>
+        /// Objet pour gérer la liste des absences
+        /// </summary>
+        private BindingSource bdgAbsences = new BindingSource();
+        /// <summary>
         /// Controleur de la fenêtre
         /// </summary>
         private FrmMediatek86Controller controller;
@@ -185,6 +189,34 @@ namespace mediatek86
                 txtTelephone.Text = personnel.Tel;
                 txtMail.Text = personnel.Mail;
                 cbxServicePersonnel.SelectedIndex = cbxServicePersonnel.FindStringExact(personnel.Service.Nom);
+            }
+            else
+            {
+                MessageBox.Show("Une ligne doit être sélectionnée.", "Information");
+            }
+        }
+
+        /// <summary>
+        /// Affiche les absences du personnel
+        /// </summary>
+        private void RemplirListeAbsences(int idpersonnelselect)
+        {
+            List<Absence> lesAbsences = controller.GetLesAbsences(idpersonnelselect);
+            bdgAbsences.DataSource = lesAbsences;
+            dgvAbsences.DataSource = bdgAbsences;
+            dgvAbsences.Columns["idpersonnel"].Visible = false;
+            dgvAbsences.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
+        /// <summary>
+        /// Demande d'affichage des absences
+        /// </summary>
+        private void btnGestionAbsence_Click(object sender, EventArgs e)
+        {
+            if (dgvPersonnel.SelectedRows.Count > 0)
+            {
+                Personnel personnel = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
+                RemplirListeAbsences(personnel.Idpersonnel);
             }
             else
             {

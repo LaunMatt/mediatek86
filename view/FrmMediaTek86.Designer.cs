@@ -375,6 +375,7 @@
             this.btnGestionAbsence.TabIndex = 16;
             this.btnGestionAbsence.Text = "Gérer les absences du personnel sélectionné";
             this.btnGestionAbsence.UseVisualStyleBackColor = true;
+            this.btnGestionAbsence.Click += new System.EventHandler(this.btnGestionAbsence_Click);
             // 
             // FrmMediatek86
             // 
