@@ -18,9 +18,13 @@ namespace mediatek86
     public partial class FrmMediatek86 : Form
     {
         /// <summary>
-        /// Booléen pour savoir si une modification est demandée
+        /// Booléen pour savoir si une modification est demandée au niveau du personnel
         /// </summary>
         private Boolean enCoursDeModifPersonnel = false;
+        /// <summary>
+        /// Booléen pour savoir si une modification est demandée au niveau des absences
+        /// </summary>
+        private Boolean enCoursDeModifAbsence = false;
         /// <summary>
         /// Objet pour gérer la liste du personnel
         /// </summary>
@@ -33,6 +37,10 @@ namespace mediatek86
         /// Objet pour gérer la liste des absences
         /// </summary>
         private BindingSource bdgAbsences = new BindingSource();
+        /// <summary>
+        /// Objet pour gérer la liste des motifs
+        /// </summary>
+        private BindingSource bdgMotifs = new BindingSource();
         /// <summary>
         /// Controleur de la fenêtre
         /// </summary>
@@ -56,7 +64,9 @@ namespace mediatek86
             controller = new FrmMediatek86Controller();
             RemplirListePersonnel();
             RemplirListeServices();
+            RemplirListeMotifs();
             EnCoursDeModifPersonnel(false);
+            gbxAjoutModifAbsence.Enabled = false;
         }
 
         /// <summary>
@@ -209,6 +219,16 @@ namespace mediatek86
         }
 
         /// <summary>
+        /// Affiche les MTOFS
+        /// </summary>
+        private void RemplirListeMotifs()
+        {
+            List<Motif> lesMotifs = controller.GetLesMotifs();
+            bdgMotifs.DataSource = lesMotifs;
+            cbxMotif.DataSource = bdgMotifs;
+        }
+
+        /// <summary>
         /// Demande d'affichage des absences
         /// </summary>
         private void btnGestionAbsence_Click(object sender, EventArgs e)
@@ -217,11 +237,133 @@ namespace mediatek86
             {
                 Personnel personnel = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
                 RemplirListeAbsences(personnel.Idpersonnel);
+                gbxAjoutModifAbsence.Enabled = true;
             }
             else
             {
                 MessageBox.Show("Une ligne doit être sélectionnée.", "Information");
             }
+        }
+
+        /// <summary>
+        /// Demande d'enregistrement de l'ajout ou de la modification d'une absence
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnEnregistrerAbsence_Click(object sender, EventArgs e)
+        {
+            if (!dtpDateDebut.Text.Equals("") && !dtpDateFin.Text.Equals("") && cbxMotif.SelectedIndex != -1)
+            {
+                Motif motif = (Motif)bdgMotifs.List[bdgMotifs.Position];
+                if (enCoursDeModifAbsence)
+                {
+                    Personnel personnelselect = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
+                    Absence absence = (Absence)bdgAbsences.List[bdgAbsences.Position];
+                    absence.Datedebut = DateTime.Parse(dtpDateDebut.Text);
+                    absence.Datefin = DateTime.Parse(dtpDateFin.Text);
+                    absence.Motif = motif;
+                    int dateResult = DateTime.Compare(absence.Datedebut, absence.Datefin);
+                    if (dateResult <= 0)
+                    {
+                        if (AbsenceChevauche(absence.Datedebut, absence.Datefin, personnelselect.Idpersonnel, absence) == false)
+                        {
+                            controller.UpdateAbsence(absence);
+                        }
+                        else
+                        {
+                            MessageBox.Show("La nouvelle absence ne peut pas chevaucher une absence déjà existante.", "Information");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("La date de début doit être antérieure à la date de fin.", "Information");
+                    }
+                }
+                else
+                {
+                    Personnel personnelselect = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
+                    Absence absence = new Absence(personnelselect.Idpersonnel, DateTime.Parse(dtpDateDebut.Text), DateTime.Parse(dtpDateFin.Text), motif);
+                    int dateResult = DateTime.Compare(absence.Datedebut, absence.Datefin);
+                    if (dateResult <= 0)
+                    {
+                        if (AbsenceChevauche(absence.Datedebut, absence.Datefin, personnelselect.Idpersonnel, absence) == false)
+                        {
+                            controller.AddAbsence(absence);
+                        }
+                        else
+                        {
+                            MessageBox.Show("La nouvelle absence ne peut pas chevaucher une absence déjà existante.", "Information");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("La date de début doit être antérieure à la date de fin.", "Information");
+                    }
+                }
+                Personnel personnel = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
+                RemplirListeAbsences(personnel.Idpersonnel);
+                EnCoursDeModifAbsence(false);
+            }
+            else
+            {
+                MessageBox.Show("Tous les champs doivent être remplis.", "Information");
+            }
+        }
+
+        /// <summary>
+        /// Modification d'affichage suivant si on est en cours de modif ou d'ajout de l'absence
+        /// </summary>
+        /// <param name="modif"></param>
+        private void EnCoursDeModifAbsence(Boolean modif)
+        {
+            enCoursDeModifAbsence = modif;
+            gbxAbsences.Enabled = !modif;
+            if (modif)
+            {
+                gbxAjoutModifAbsence.Text = "Modifier une absence";
+            }
+            else
+            {
+                gbxAjoutModifAbsence.Text = "Ajouter une absence";
+                dtpDateDebut.Text = "";
+                dtpDateFin.Text = "";
+            }
+        }
+
+        /// <summary>
+        /// Annule la demande d'ajout ou de modification de l'absence
+        /// Vide les zones de saisie de l'absence
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAnnulerAbsence_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Voulez-vous vraiment annuler ?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                EnCoursDeModifAbsence(false);
+            }
+        }
+
+        /// <summary>
+        /// Vérifie s'il y a une superposition d'absences pour le personnel sélectionné
+        /// </summary>
+        private bool AbsenceChevauche(DateTime dateDebut, DateTime dateFin, int idPersonnel, Absence absenceEnCours = null)
+        {
+            List<Absence> absencesExistantes = controller.GetLesAbsences(idPersonnel);
+
+            foreach (Absence absence in absencesExistantes)
+            {
+                if (absenceEnCours != null && absence == absenceEnCours)
+                {
+                    continue;
+                }
+                if (!(dateFin < absence.Datedebut || dateDebut > absence.Datefin))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

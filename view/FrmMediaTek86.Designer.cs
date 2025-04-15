@@ -52,11 +52,11 @@
             this.lblPrenom = new System.Windows.Forms.Label();
             this.lblNom = new System.Windows.Forms.Label();
             this.gbxAjoutModifAbsence = new System.Windows.Forms.GroupBox();
+            this.dtpDateFin = new System.Windows.Forms.DateTimePicker();
+            this.dtpDateDebut = new System.Windows.Forms.DateTimePicker();
             this.cbxMotif = new System.Windows.Forms.ComboBox();
             this.btnAnnulerAbsence = new System.Windows.Forms.Button();
             this.btnEnregistrerAbsence = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.lblMotif = new System.Windows.Forms.Label();
             this.lblDateFin = new System.Windows.Forms.Label();
             this.lblDateDebut = new System.Windows.Forms.Label();
@@ -285,11 +285,11 @@
             // 
             // gbxAjoutModifAbsence
             // 
+            this.gbxAjoutModifAbsence.Controls.Add(this.dtpDateFin);
+            this.gbxAjoutModifAbsence.Controls.Add(this.dtpDateDebut);
             this.gbxAjoutModifAbsence.Controls.Add(this.cbxMotif);
             this.gbxAjoutModifAbsence.Controls.Add(this.btnAnnulerAbsence);
             this.gbxAjoutModifAbsence.Controls.Add(this.btnEnregistrerAbsence);
-            this.gbxAjoutModifAbsence.Controls.Add(this.textBox3);
-            this.gbxAjoutModifAbsence.Controls.Add(this.textBox4);
             this.gbxAjoutModifAbsence.Controls.Add(this.lblMotif);
             this.gbxAjoutModifAbsence.Controls.Add(this.lblDateFin);
             this.gbxAjoutModifAbsence.Controls.Add(this.lblDateDebut);
@@ -298,7 +298,23 @@
             this.gbxAjoutModifAbsence.Size = new System.Drawing.Size(341, 150);
             this.gbxAjoutModifAbsence.TabIndex = 10;
             this.gbxAjoutModifAbsence.TabStop = false;
-            this.gbxAjoutModifAbsence.Text = "Ajouter/Modifier une absence";
+            this.gbxAjoutModifAbsence.Text = "Ajouter une absence";
+            // 
+            // dtpDateFin
+            // 
+            this.dtpDateFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDateFin.Location = new System.Drawing.Point(87, 48);
+            this.dtpDateFin.Name = "dtpDateFin";
+            this.dtpDateFin.Size = new System.Drawing.Size(239, 20);
+            this.dtpDateFin.TabIndex = 18;
+            // 
+            // dtpDateDebut
+            // 
+            this.dtpDateDebut.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDateDebut.Location = new System.Drawing.Point(87, 22);
+            this.dtpDateDebut.Name = "dtpDateDebut";
+            this.dtpDateDebut.Size = new System.Drawing.Size(239, 20);
+            this.dtpDateDebut.TabIndex = 17;
             // 
             // cbxMotif
             // 
@@ -316,6 +332,7 @@
             this.btnAnnulerAbsence.TabIndex = 14;
             this.btnAnnulerAbsence.Text = "Annuler";
             this.btnAnnulerAbsence.UseVisualStyleBackColor = true;
+            this.btnAnnulerAbsence.Click += new System.EventHandler(this.btnAnnulerAbsence_Click);
             // 
             // btnEnregistrerAbsence
             // 
@@ -325,20 +342,7 @@
             this.btnEnregistrerAbsence.TabIndex = 10;
             this.btnEnregistrerAbsence.Text = "Enregistrer";
             this.btnEnregistrerAbsence.UseVisualStyleBackColor = true;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(87, 46);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(239, 20);
-            this.textBox3.TabIndex = 11;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(87, 22);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(239, 20);
-            this.textBox4.TabIndex = 10;
+            this.btnEnregistrerAbsence.Click += new System.EventHandler(this.btnEnregistrerAbsence_Click);
             // 
             // lblMotif
             // 
@@ -433,8 +437,6 @@
         private System.Windows.Forms.GroupBox gbxAjoutModifAbsence;
         private System.Windows.Forms.Button btnAnnulerAbsence;
         private System.Windows.Forms.Button btnEnregistrerAbsence;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label lblMotif;
         private System.Windows.Forms.Label lblDateFin;
         private System.Windows.Forms.Label lblDateDebut;
@@ -442,6 +444,8 @@
         private System.Windows.Forms.ComboBox cbxServicePersonnel;
         private System.Windows.Forms.Label lblServicePersonnel;
         private System.Windows.Forms.Button btnGestionAbsence;
+        private System.Windows.Forms.DateTimePicker dtpDateDebut;
+        private System.Windows.Forms.DateTimePicker dtpDateFin;
     }
 }
 

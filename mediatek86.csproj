@@ -56,6 +56,7 @@
     <Compile Include="controller\FrmMediatek86Controller.cs" />
     <Compile Include="dal\AbsenceAccess.cs" />
     <Compile Include="dal\Access.cs" />
+    <Compile Include="dal\MotifAccess.cs" />
     <Compile Include="dal\PersonnelAccess.cs" />
     <Compile Include="dal\ResponsableAccess.cs" />
     <Compile Include="dal\ServiceAccess.cs" />

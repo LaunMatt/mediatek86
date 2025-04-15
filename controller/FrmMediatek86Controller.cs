@@ -25,6 +25,10 @@ namespace mediatek86.controller
         /// objet d'accès aux opérations possibles sur Absence
         /// </summary>
         private readonly AbsenceAccess absenceAccess;
+        /// <summary>
+        /// objet d'accès aux opérations possibles sur Motif
+        /// </summary>
+        private readonly MotifAccess motifAccess;
 
         /// <summary>
         /// Récupère les acces aux données
@@ -34,12 +38,13 @@ namespace mediatek86.controller
             personnelAccess = new PersonnelAccess();
             serviceAccess = new ServiceAccess();
             absenceAccess = new AbsenceAccess();
+            motifAccess = new MotifAccess();
         }
 
         /// <summary>
         /// Récupère et retourne les infos du personnel
         /// </summary>
-        /// <returns>liste des développeurs</returns>
+        /// <returns>liste du personnel</returns>
         public List<Personnel> GetLePersonnel()
         {
             return personnelAccess.GetLePersonnel();
@@ -48,7 +53,7 @@ namespace mediatek86.controller
         /// <summary>
         /// Récupère et retourne les infos des services
         /// </summary>
-        /// <returns>liste des profils</returns>
+        /// <returns>liste des services</returns>
         public List<Service> GetLesServices()
         {
             return serviceAccess.GetLesServices();
@@ -57,10 +62,19 @@ namespace mediatek86.controller
         /// <summary>
         /// Récupère et retourne les infos des absences
         /// </summary>
-        /// <returns>liste des développeurs</returns>
+        /// <returns>liste des absences</returns>
         public List<Absence> GetLesAbsences(int idpersonnelselect)
         {
             return absenceAccess.GetLesAbsences(idpersonnelselect);
+        }
+        
+        /// <summary>
+        /// Récupère et retourne les infos des motifs
+        /// </summary>
+        /// <returns>liste des motifs</returns>
+        public List<Motif> GetLesMotifs()
+        {
+            return motifAccess.GetLesMotifs();
         }
 
         /// <summary>
@@ -88,6 +102,24 @@ namespace mediatek86.controller
         public void DelPersonnel(Personnel personnel)
         {
             personnelAccess.DelPersonnel(personnel);
+        }
+
+        /// <summary>
+        /// Demande d'ajout d'une absence
+        /// </summary>
+        /// <param name="absence">objet personnel à ajouter</param>
+        public void AddAbsence(Absence absence)
+        {
+            absenceAccess.AddAbsence(absence);
+        }
+
+        /// <summary>
+        /// Demande de modification d'une absence
+        /// </summary>
+        /// <param name="absence">objet absence à modifier</param>
+        public void UpdateAbsence(Absence absence)
+        {
+            absenceAccess.UpdateAbsence(absence);
         }
     }
 }
