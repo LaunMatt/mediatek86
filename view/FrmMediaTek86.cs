@@ -362,8 +362,29 @@ namespace mediatek86
                     return true;
                 }
             }
-
             return false;
+        }
+        /// <summary>
+        /// Demande de suppression d'une absence
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSupprimerAbsence_Click(object sender, EventArgs e)
+        {
+            if (dgvPersonnel.SelectedRows.Count > 0)
+            {
+                Personnel personnel = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
+                Absence absence = (Absence)bdgAbsences.List[bdgAbsences.Position];
+                if (MessageBox.Show("Voulez-vous vraiment supprimer l'absence du " + absence.Datedebut + " au " + absence.Datefin + " du personnel " + personnel.Nom + " " + personnel.Prenom + " ?", "Confirmation de suppression", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    controller.DelAbsence(absence);
+                    RemplirListeAbsences(personnel.Idpersonnel);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Une ligne doit être sélectionnée.", "Information");
+            }
         }
     }
 }

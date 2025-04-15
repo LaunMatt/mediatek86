@@ -160,6 +160,7 @@
             this.btnSupprimerAbsence.TabIndex = 8;
             this.btnSupprimerAbsence.Text = "Supprimer absence";
             this.btnSupprimerAbsence.UseVisualStyleBackColor = true;
+            this.btnSupprimerAbsence.Click += new System.EventHandler(this.btnSupprimerAbsence_Click);
             // 
             // gbxAjoutModifPersonnel
             // 
