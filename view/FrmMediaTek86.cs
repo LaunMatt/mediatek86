@@ -67,6 +67,8 @@ namespace mediatek86
             RemplirListeMotifs();
             EnCoursDeModifPersonnel(false);
             gbxAjoutModifAbsence.Enabled = false;
+            btnModifAbsence.Enabled = false;
+            btnSupprimerAbsence.Enabled = false;
         }
 
         /// <summary>
@@ -98,30 +100,34 @@ namespace mediatek86
         /// <param name="e"></param>
         private void btnEnregistrerPersonnel_Click(object sender, EventArgs e)
         {
-            if (!txtNom.Text.Equals("") && !txtPrenom.Text.Equals("") && !txtTelephone.Text.Equals("") && !txtMail.Text.Equals("") && cbxServicePersonnel.SelectedIndex != -1)
+            if (MessageBox.Show("Voulez-vous vraiment enregistrer ces nouvelles informations ?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                Service service = (Service)bdgServices.List[bdgServices.Position];
-                if (enCoursDeModifPersonnel)
+
+                if (!txtNom.Text.Equals("") && !txtPrenom.Text.Equals("") && !txtTelephone.Text.Equals("") && !txtMail.Text.Equals("") && cbxServicePersonnel.SelectedIndex != -1)
                 {
-                    Personnel personnel = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
-                    personnel.Nom = txtNom.Text;
-                    personnel.Prenom = txtPrenom.Text;
-                    personnel.Tel = txtTelephone.Text;
-                    personnel.Mail = txtMail.Text;
-                    personnel.Service = service;
-                    controller.UpdatePersonnel(personnel);
+                    Service service = (Service)bdgServices.List[bdgServices.Position];
+                    if (enCoursDeModifPersonnel)
+                    {
+                        Personnel personnel = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
+                        personnel.Nom = txtNom.Text;
+                        personnel.Prenom = txtPrenom.Text;
+                        personnel.Tel = txtTelephone.Text;
+                        personnel.Mail = txtMail.Text;
+                        personnel.Service = service;
+                        controller.UpdatePersonnel(personnel);
+                    }
+                    else
+                    {
+                        Personnel personnel = new Personnel(0, txtNom.Text, txtPrenom.Text, txtTelephone.Text, txtMail.Text, service);
+                        controller.AddPersonnel(personnel);
+                    }
+                    RemplirListePersonnel();
+                    EnCoursDeModifPersonnel(false);
                 }
                 else
                 {
-                    Personnel personnel = new Personnel(0, txtNom.Text, txtPrenom.Text, txtTelephone.Text, txtMail.Text, service);
-                    controller.AddPersonnel(personnel);
+                    MessageBox.Show("Tous les champs doivent être remplis.", "Information");
                 }
-                RemplirListePersonnel();
-                EnCoursDeModifPersonnel(false);
-            }
-            else
-            {
-                MessageBox.Show("Tous les champs doivent être remplis.", "Information");
             }
         }
 
@@ -173,6 +179,8 @@ namespace mediatek86
                 Personnel personnel = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
                 if (MessageBox.Show("Voulez-vous vraiment supprimer " + personnel.Nom + " " + personnel.Prenom + " ?", "Confirmation de suppression", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
+                    controller.DelAbsencesPersonnel(personnel);
+                    RemplirListeAbsences(personnel.Idpersonnel);
                     controller.DelPersonnel(personnel);
                     RemplirListePersonnel();
                 }
@@ -238,6 +246,8 @@ namespace mediatek86
                 Personnel personnel = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
                 RemplirListeAbsences(personnel.Idpersonnel);
                 gbxAjoutModifAbsence.Enabled = true;
+                btnModifAbsence.Enabled = true;
+                btnSupprimerAbsence.Enabled = true;
             }
             else
             {
@@ -252,61 +262,68 @@ namespace mediatek86
         /// <param name="e"></param>
         private void btnEnregistrerAbsence_Click(object sender, EventArgs e)
         {
-            if (!dtpDateDebut.Text.Equals("") && !dtpDateFin.Text.Equals("") && cbxMotif.SelectedIndex != -1)
+            if (MessageBox.Show("Voulez-vous vraiment enregistrer ces nouvelles informations ?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                Motif motif = (Motif)bdgMotifs.List[bdgMotifs.Position];
-                if (enCoursDeModifAbsence)
+                if (!dtpDateDebut.Text.Equals("") && !dtpDateFin.Text.Equals("") && cbxMotif.SelectedIndex != -1)
                 {
-                    Personnel personnelselect = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
-                    Absence absence = (Absence)bdgAbsences.List[bdgAbsences.Position];
-                    absence.Datedebut = DateTime.Parse(dtpDateDebut.Text);
-                    absence.Datefin = DateTime.Parse(dtpDateFin.Text);
-                    absence.Motif = motif;
-                    int dateResult = DateTime.Compare(absence.Datedebut, absence.Datefin);
-                    if (dateResult <= 0)
+                    Motif motif = (Motif)bdgMotifs.List[bdgMotifs.Position];
+                    if (enCoursDeModifAbsence)
                     {
-                        if (AbsenceChevauche(absence.Datedebut, absence.Datefin, personnelselect.Idpersonnel, absence) == false)
+                        Personnel personnelselect = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
+                        Absence absence = (Absence)bdgAbsences.List[bdgAbsences.Position];
+
+                        DateTime ancienneDateDebut = absence.Datedebut;
+                        DateTime ancienneDateFin = absence.Datefin;
+
+                        absence.Datedebut = DateTime.Parse(dtpDateDebut.Text);
+                        absence.Datefin = DateTime.Parse(dtpDateFin.Text);
+                        absence.Motif = motif;
+                        int dateResult = DateTime.Compare(absence.Datedebut, absence.Datefin);
+                        if (dateResult <= 0)
                         {
-                            controller.UpdateAbsence(absence);
+                            if (AbsenceChevauche(absence.Datedebut, absence.Datefin, personnelselect.Idpersonnel, ancienneDateDebut, ancienneDateFin) == false)
+                            {
+                                controller.UpdateAbsence(absence, ancienneDateDebut);
+                            }
+                            else
+                            {
+                                MessageBox.Show("La nouvelle absence ne peut pas chevaucher une absence déjà existante.", "Information");
+                            }
                         }
                         else
                         {
-                            MessageBox.Show("La nouvelle absence ne peut pas chevaucher une absence déjà existante.", "Information");
+                            MessageBox.Show("La date de début doit être antérieure à la date de fin.", "Information");
                         }
                     }
                     else
                     {
-                        MessageBox.Show("La date de début doit être antérieure à la date de fin.", "Information");
+                        Personnel personnelselect = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
+                        Absence absence = new Absence(personnelselect.Idpersonnel, DateTime.Parse(dtpDateDebut.Text), DateTime.Parse(dtpDateFin.Text), motif);
+                        int dateResult = DateTime.Compare(absence.Datedebut, absence.Datefin);
+                        if (dateResult <= 0)
+                        {
+                            if (AbsenceChevauche(absence.Datedebut, absence.Datefin, personnelselect.Idpersonnel, null, null) == false)
+                            {
+                                controller.AddAbsence(absence);
+                            }
+                            else
+                            {
+                                MessageBox.Show("La nouvelle absence ne peut pas chevaucher une absence déjà existante.", "Information");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("La date de début doit être antérieure à la date de fin.", "Information");
+                        }
                     }
+                    Personnel personnel = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
+                    RemplirListeAbsences(personnel.Idpersonnel);
+                    EnCoursDeModifAbsence(false);
                 }
                 else
                 {
-                    Personnel personnelselect = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
-                    Absence absence = new Absence(personnelselect.Idpersonnel, DateTime.Parse(dtpDateDebut.Text), DateTime.Parse(dtpDateFin.Text), motif);
-                    int dateResult = DateTime.Compare(absence.Datedebut, absence.Datefin);
-                    if (dateResult <= 0)
-                    {
-                        if (AbsenceChevauche(absence.Datedebut, absence.Datefin, personnelselect.Idpersonnel, absence) == false)
-                        {
-                            controller.AddAbsence(absence);
-                        }
-                        else
-                        {
-                            MessageBox.Show("La nouvelle absence ne peut pas chevaucher une absence déjà existante.", "Information");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("La date de début doit être antérieure à la date de fin.", "Information");
-                    }
+                    MessageBox.Show("Tous les champs doivent être remplis.", "Information");
                 }
-                Personnel personnel = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
-                RemplirListeAbsences(personnel.Idpersonnel);
-                EnCoursDeModifAbsence(false);
-            }
-            else
-            {
-                MessageBox.Show("Tous les champs doivent être remplis.", "Information");
             }
         }
 
@@ -325,8 +342,6 @@ namespace mediatek86
             else
             {
                 gbxAjoutModifAbsence.Text = "Ajouter une absence";
-                dtpDateDebut.Text = "";
-                dtpDateFin.Text = "";
             }
         }
 
@@ -347,13 +362,13 @@ namespace mediatek86
         /// <summary>
         /// Vérifie s'il y a une superposition d'absences pour le personnel sélectionné
         /// </summary>
-        private bool AbsenceChevauche(DateTime dateDebut, DateTime dateFin, int idPersonnel, Absence absenceEnCours = null)
+        private bool AbsenceChevauche(DateTime dateDebut, DateTime dateFin, int idPersonnel, DateTime? ancienneDateDebut = null, DateTime? ancienneDateFin = null)
         {
             List<Absence> absencesExistantes = controller.GetLesAbsences(idPersonnel);
 
             foreach (Absence absence in absencesExistantes)
             {
-                if (absenceEnCours != null && absence == absenceEnCours)
+                if (ancienneDateDebut != null && ancienneDateFin != null && absence.Datedebut == ancienneDateDebut && absence.Datefin == ancienneDateFin)
                 {
                     continue;
                 }
@@ -371,7 +386,7 @@ namespace mediatek86
         /// <param name="e"></param>
         private void btnSupprimerAbsence_Click(object sender, EventArgs e)
         {
-            if (dgvPersonnel.SelectedRows.Count > 0)
+            if (dgvAbsences.SelectedRows.Count > 0)
             {
                 Personnel personnel = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
                 Absence absence = (Absence)bdgAbsences.List[bdgAbsences.Position];
@@ -380,6 +395,26 @@ namespace mediatek86
                     controller.DelAbsence(absence);
                     RemplirListeAbsences(personnel.Idpersonnel);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Une ligne doit être sélectionnée.", "Information");
+            }
+        }
+        /// <summary>
+        ///  Demande de modification d'une absence
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnModifAbsence_Click(object sender, EventArgs e)
+        {
+            if (dgvAbsences.SelectedRows.Count > 0)
+            {
+                EnCoursDeModifAbsence(true);
+                Absence absence = (Absence)bdgAbsences.List[bdgAbsences.Position];
+                dtpDateDebut.Value = absence.Datedebut;
+                dtpDateFin.Value = absence.Datefin;
+                cbxMotif.SelectedIndex = cbxMotif.FindStringExact(absence.Motif.Libelle);
             }
             else
             {

@@ -105,6 +105,15 @@ namespace mediatek86.controller
         }
 
         /// <summary>
+        /// Demande de suppression des absences du personnel lors de la suppression de ce dernier
+        /// </summary>
+        /// <param name="personnel">objet personnel à supprimer</param>
+        public void DelAbsencesPersonnel(Personnel personnel)
+        {
+            personnelAccess.DelAbsencesPersonnel(personnel);
+        }
+
+        /// <summary>
         /// Demande d'ajout d'une absence
         /// </summary>
         /// <param name="absence">objet personnel à ajouter</param>
@@ -117,9 +126,9 @@ namespace mediatek86.controller
         /// Demande de modification d'une absence
         /// </summary>
         /// <param name="absence">objet absence à modifier</param>
-        public void UpdateAbsence(Absence absence)
+        public void UpdateAbsence(Absence absence, DateTime ancienneDateDebut)
         {
-            absenceAccess.UpdateAbsence(absence);
+            absenceAccess.UpdateAbsence(absence, ancienneDateDebut);
         }
 
         /// <summary>

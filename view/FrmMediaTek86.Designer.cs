@@ -32,10 +32,8 @@
             this.gbxPersonnel = new System.Windows.Forms.GroupBox();
             this.gbxAbsences = new System.Windows.Forms.GroupBox();
             this.dgvAbsences = new System.Windows.Forms.DataGridView();
-            this.btnAjoutPersonnel = new System.Windows.Forms.Button();
             this.btnModifPersonnel = new System.Windows.Forms.Button();
             this.btnSupprimerPersonnel = new System.Windows.Forms.Button();
-            this.btnAjoutAbsence = new System.Windows.Forms.Button();
             this.btnModifAbsence = new System.Windows.Forms.Button();
             this.btnSupprimerAbsence = new System.Windows.Forms.Button();
             this.gbxAjoutModifPersonnel = new System.Windows.Forms.GroupBox();
@@ -105,20 +103,11 @@
             this.dgvAbsences.Size = new System.Drawing.Size(329, 152);
             this.dgvAbsences.TabIndex = 3;
             // 
-            // btnAjoutPersonnel
-            // 
-            this.btnAjoutPersonnel.Location = new System.Drawing.Point(12, 195);
-            this.btnAjoutPersonnel.Name = "btnAjoutPersonnel";
-            this.btnAjoutPersonnel.Size = new System.Drawing.Size(112, 23);
-            this.btnAjoutPersonnel.TabIndex = 3;
-            this.btnAjoutPersonnel.Text = "Ajouter personnel";
-            this.btnAjoutPersonnel.UseVisualStyleBackColor = true;
-            // 
             // btnModifPersonnel
             // 
-            this.btnModifPersonnel.Location = new System.Drawing.Point(126, 195);
+            this.btnModifPersonnel.Location = new System.Drawing.Point(12, 195);
             this.btnModifPersonnel.Name = "btnModifPersonnel";
-            this.btnModifPersonnel.Size = new System.Drawing.Size(112, 23);
+            this.btnModifPersonnel.Size = new System.Drawing.Size(165, 23);
             this.btnModifPersonnel.TabIndex = 4;
             this.btnModifPersonnel.Text = "Modifier personnel";
             this.btnModifPersonnel.UseVisualStyleBackColor = true;
@@ -126,37 +115,29 @@
             // 
             // btnSupprimerPersonnel
             // 
-            this.btnSupprimerPersonnel.Location = new System.Drawing.Point(241, 195);
+            this.btnSupprimerPersonnel.Location = new System.Drawing.Point(188, 195);
             this.btnSupprimerPersonnel.Name = "btnSupprimerPersonnel";
-            this.btnSupprimerPersonnel.Size = new System.Drawing.Size(112, 23);
+            this.btnSupprimerPersonnel.Size = new System.Drawing.Size(165, 23);
             this.btnSupprimerPersonnel.TabIndex = 5;
             this.btnSupprimerPersonnel.Text = "Supprimer personnel";
             this.btnSupprimerPersonnel.UseVisualStyleBackColor = true;
             this.btnSupprimerPersonnel.Click += new System.EventHandler(this.btnSupprimerPersonnel_Click);
             // 
-            // btnAjoutAbsence
-            // 
-            this.btnAjoutAbsence.Location = new System.Drawing.Point(371, 195);
-            this.btnAjoutAbsence.Name = "btnAjoutAbsence";
-            this.btnAjoutAbsence.Size = new System.Drawing.Size(112, 23);
-            this.btnAjoutAbsence.TabIndex = 6;
-            this.btnAjoutAbsence.Text = "Ajouter absence";
-            this.btnAjoutAbsence.UseVisualStyleBackColor = true;
-            // 
             // btnModifAbsence
             // 
-            this.btnModifAbsence.Location = new System.Drawing.Point(485, 195);
+            this.btnModifAbsence.Location = new System.Drawing.Point(371, 195);
             this.btnModifAbsence.Name = "btnModifAbsence";
-            this.btnModifAbsence.Size = new System.Drawing.Size(112, 23);
+            this.btnModifAbsence.Size = new System.Drawing.Size(165, 23);
             this.btnModifAbsence.TabIndex = 7;
             this.btnModifAbsence.Text = "Modifier absence";
             this.btnModifAbsence.UseVisualStyleBackColor = true;
+            this.btnModifAbsence.Click += new System.EventHandler(this.btnModifAbsence_Click);
             // 
             // btnSupprimerAbsence
             // 
-            this.btnSupprimerAbsence.Location = new System.Drawing.Point(600, 195);
+            this.btnSupprimerAbsence.Location = new System.Drawing.Point(547, 195);
             this.btnSupprimerAbsence.Name = "btnSupprimerAbsence";
-            this.btnSupprimerAbsence.Size = new System.Drawing.Size(112, 23);
+            this.btnSupprimerAbsence.Size = new System.Drawing.Size(165, 23);
             this.btnSupprimerAbsence.TabIndex = 8;
             this.btnSupprimerAbsence.Text = "Supprimer absence";
             this.btnSupprimerAbsence.UseVisualStyleBackColor = true;
@@ -392,10 +373,8 @@
             this.Controls.Add(this.gbxAjoutModifPersonnel);
             this.Controls.Add(this.btnSupprimerAbsence);
             this.Controls.Add(this.btnModifAbsence);
-            this.Controls.Add(this.btnAjoutAbsence);
             this.Controls.Add(this.btnSupprimerPersonnel);
             this.Controls.Add(this.btnModifPersonnel);
-            this.Controls.Add(this.btnAjoutPersonnel);
             this.Controls.Add(this.gbxAbsences);
             this.Controls.Add(this.gbxPersonnel);
             this.Name = "FrmMediatek86";
@@ -418,10 +397,8 @@
         private System.Windows.Forms.GroupBox gbxPersonnel;
         private System.Windows.Forms.GroupBox gbxAbsences;
         private System.Windows.Forms.DataGridView dgvAbsences;
-        private System.Windows.Forms.Button btnAjoutPersonnel;
         private System.Windows.Forms.Button btnModifPersonnel;
         private System.Windows.Forms.Button btnSupprimerPersonnel;
-        private System.Windows.Forms.Button btnAjoutAbsence;
         private System.Windows.Forms.Button btnModifAbsence;
         private System.Windows.Forms.Button btnSupprimerAbsence;
         private System.Windows.Forms.GroupBox gbxAjoutModifPersonnel;

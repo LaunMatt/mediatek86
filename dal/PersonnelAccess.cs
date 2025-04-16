@@ -59,7 +59,7 @@ namespace mediatek86.dal
             }
             return lePersonnel;
         }
-        
+
         /// <summary>
         /// Demande d'ajout du personnel
         /// </summary>
@@ -126,6 +126,29 @@ namespace mediatek86.dal
             if (access.Manager != null)
             {
                 string req = "delete from personnel where idpersonnel = @idpersonnel;";
+                Dictionary<string, object> parameters = new Dictionary<string, object>();
+                parameters.Add("@idpersonnel", personnel.Idpersonnel);
+                try
+                {
+                    access.Manager.ReqUpdate(req, parameters);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Environment.Exit(0);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Demande de suppression des absences du personnel lors de la suppression de ce dernier
+        /// </summary>
+        /// <param name="personnel">objet personnel dont les absences doivent être supprimées</param>
+        public void DelAbsencesPersonnel(Personnel personnel)
+        {
+            if (access.Manager != null)
+            {
+                string req = "delete from absence where idpersonnel = @idpersonnel;";
                 Dictionary<string, object> parameters = new Dictionary<string, object>();
                 parameters.Add("@idpersonnel", personnel.Idpersonnel);
                 try

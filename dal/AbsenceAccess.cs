@@ -94,17 +94,18 @@ namespace mediatek86.dal
         /// Demande de modification d'une absence
         /// </summary>
         /// <param name="absence">objet absence à modifier</param>
-        public void UpdateAbsence(Absence absence)
+        public void UpdateAbsence(Absence absence, DateTime ancienneDateDebut)
         {
             if (access.Manager != null)
             {
                 string req = "update absence set datedebut = @datedebut, datefin = @datefin, idmotif = @idmotif ";
-                req += "where idpersonnel = @idpersonnel;";
+                req += "where idpersonnel = @idpersonnel and datedebut = @ancienneDateDebut;";
                 Dictionary<string, object> parameters = new Dictionary<string, object>();
                 parameters.Add("@idpersonnel", absence.Idpersonnel);
                 parameters.Add("@datedebut", absence.Datedebut);
                 parameters.Add("@datefin", absence.Datefin);
                 parameters.Add("@idmotif", absence.Motif.Idmotif);
+                parameters.Add("@ancienneDateDebut", ancienneDateDebut);
                 try
                 {
                     access.Manager.ReqUpdate(req, parameters);
@@ -112,7 +113,6 @@ namespace mediatek86.dal
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
-                    Environment.Exit(0);
                 }
             }
         }
