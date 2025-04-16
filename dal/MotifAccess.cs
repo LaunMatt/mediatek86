@@ -28,7 +28,7 @@ namespace mediatek86.dal
         /// <summary>
         /// Récupère et retourne les motifs
         /// </summary>
-        /// <returns>liste des profils</returns>
+        /// <returns>liste des motifs</returns>
         public List<Motif> GetLesMotifs()
         {
             List<Motif> lesMotifs = new List<Motif>();

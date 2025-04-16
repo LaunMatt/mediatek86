@@ -96,8 +96,8 @@ namespace mediatek86
         /// <summary>
         /// Demande d'enregistrement de l'ajout ou de la modification du personnel
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">sender</param>
+        /// <param name="e">e</param>
         private void btnEnregistrerPersonnel_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Voulez-vous vraiment enregistrer ces nouvelles informations ?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -134,7 +134,7 @@ namespace mediatek86
         /// <summary>
         /// Modification d'affichage suivant si on est en cours de modif ou d'ajout du personnel
         /// </summary>
-        /// <param name="modif"></param>
+        /// <param name="modif">modif</param>
         private void EnCoursDeModifPersonnel(Boolean modif)
         {
             enCoursDeModifPersonnel = modif;
@@ -157,8 +157,8 @@ namespace mediatek86
         /// Annule la demande d'ajout ou de modification du personnel
         /// Vide les zones de saisie du personnel
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">sender</param>
+        /// <param name="e">e</param>
         private void btnAnnulerPersonnel_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Voulez-vous vraiment annuler ?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -170,8 +170,8 @@ namespace mediatek86
         /// <summary>
         /// Demande de suppression du personnel
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">sender</param>
+        /// <param name="e">e</param>
         private void btnSupprimerPersonnel_Click(object sender, EventArgs e)
         {
             if (dgvPersonnel.SelectedRows.Count > 0)
@@ -194,8 +194,8 @@ namespace mediatek86
         /// <summary>
         ///  Demande de modification du personnel
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">sender</param>
+        /// <param name="e">e</param>
         private void btnModifPersonnel_Click(object sender, EventArgs e)
         {
             if (dgvPersonnel.SelectedRows.Count > 0)
@@ -217,6 +217,7 @@ namespace mediatek86
         /// <summary>
         /// Affiche les absences du personnel
         /// </summary>
+        /// /// <param name="idpersonnelselect">identifiant du personnel sélectionné</param>
         private void RemplirListeAbsences(int idpersonnelselect)
         {
             List<Absence> lesAbsences = controller.GetLesAbsences(idpersonnelselect);
@@ -227,7 +228,7 @@ namespace mediatek86
         }
 
         /// <summary>
-        /// Affiche les MTOFS
+        /// Affiche les Motifs
         /// </summary>
         private void RemplirListeMotifs()
         {
@@ -239,6 +240,8 @@ namespace mediatek86
         /// <summary>
         /// Demande d'affichage des absences
         /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">e</param>
         private void btnGestionAbsence_Click(object sender, EventArgs e)
         {
             if (dgvPersonnel.SelectedRows.Count > 0)
@@ -258,8 +261,8 @@ namespace mediatek86
         /// <summary>
         /// Demande d'enregistrement de l'ajout ou de la modification d'une absence
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">sender</param>
+        /// <param name="e">e</param>
         private void btnEnregistrerAbsence_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Voulez-vous vraiment enregistrer ces nouvelles informations ?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -330,7 +333,7 @@ namespace mediatek86
         /// <summary>
         /// Modification d'affichage suivant si on est en cours de modif ou d'ajout de l'absence
         /// </summary>
-        /// <param name="modif"></param>
+        /// <param name="modif">modif</param>
         private void EnCoursDeModifAbsence(Boolean modif)
         {
             enCoursDeModifAbsence = modif;
@@ -349,8 +352,8 @@ namespace mediatek86
         /// Annule la demande d'ajout ou de modification de l'absence
         /// Vide les zones de saisie de l'absence
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">sender</param>
+        /// <param name="e">e</param>
         private void btnAnnulerAbsence_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Voulez-vous vraiment annuler ?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -362,6 +365,12 @@ namespace mediatek86
         /// <summary>
         /// Vérifie s'il y a une superposition d'absences pour le personnel sélectionné
         /// </summary>
+        /// <param name="dateDebut"> date de début de l'absence</param>
+        /// <param name="dateFin">date de fin de l'absence</param>
+        /// <param name="idPersonnel">identifiant du personnel de l'absence</param>
+        /// <param name="ancienneDateDebut">ancienne date de début de l'absence</param>
+        /// <param name="ancienneDateFin">ancienne date de fin de l'absence</param>
+        /// <returns>vrai ou faux</returns>
         private bool AbsenceChevauche(DateTime dateDebut, DateTime dateFin, int idPersonnel, DateTime? ancienneDateDebut = null, DateTime? ancienneDateFin = null)
         {
             List<Absence> absencesExistantes = controller.GetLesAbsences(idPersonnel);
@@ -382,8 +391,8 @@ namespace mediatek86
         /// <summary>
         /// Demande de suppression d'une absence
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">sender</param>
+        /// <param name="e">e</param>
         private void btnSupprimerAbsence_Click(object sender, EventArgs e)
         {
             if (dgvAbsences.SelectedRows.Count > 0)
@@ -404,8 +413,8 @@ namespace mediatek86
         /// <summary>
         ///  Demande de modification d'une absence
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">sender</param>
+        /// <param name="e">e</param>
         private void btnModifAbsence_Click(object sender, EventArgs e)
         {
             if (dgvAbsences.SelectedRows.Count > 0)

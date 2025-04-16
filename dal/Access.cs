@@ -8,6 +8,13 @@ using System.Threading.Tasks;
 namespace mediatek86.dal
 {
     /// <summary>
+    /// Package dal
+    /// </summary>
+    internal class NamespaceDoc
+    {
+
+    }
+    /// <summary>
     /// Singleton : classe d'accès à BddManager
     /// </summary>
     public class Access
@@ -44,7 +51,7 @@ namespace mediatek86.dal
         /// <summary>
         /// Création d'une seule instance de la classe
         /// </summary>
-        /// <returns></returns>
+        /// <returns>une instance</returns>
         public static Access GetInstance()
         {
             if (instance == null)

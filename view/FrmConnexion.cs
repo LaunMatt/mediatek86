@@ -36,8 +36,8 @@ namespace mediatek86.view
         /// <summary>
         /// Demande au controleur de controler l'authentification
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">sender</param>
+        /// <param name="e">e</param>
         private void btnConnection_Click(object sender, System.EventArgs e)
         {
             String login = txtLogin.Text;

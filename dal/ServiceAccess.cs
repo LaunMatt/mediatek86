@@ -28,7 +28,7 @@ namespace mediatek86.dal
         /// <summary>
         /// Récupère et retourne les services
         /// </summary>
-        /// <returns>liste des profils</returns>
+        /// <returns>liste des services</returns>
         public List<Service> GetLesServices()
         {
             List<Service> lesServices = new List<Service>();

@@ -26,10 +26,10 @@ namespace mediatek86.dal
         }
 
         /// <summary>
-        /// Controle si l'utillisateur a le droit de se connecter (login et mot de passe)
+        /// Controle si le responsable a le droit de se connecter
         /// </summary>
-        /// <param name="login"></param>
-        /// <param name="pwd"></param>
+        /// <param name="responsable">responsable qui souhaite se connecter</param>
+        /// <returns>vrai ou faux</returns>
         public Boolean ControleConnexion(Responsable responsable)
         {
             if (access.Manager != null)

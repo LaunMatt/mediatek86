@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmConnexion));
             this.lblLogin = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
             this.txtLogin = new System.Windows.Forms.TextBox();
@@ -88,6 +89,7 @@
             this.Controls.Add(this.txtLogin);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblLogin);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmConnexion";
             this.Text = "Connection";
             this.ResumeLayout(false);

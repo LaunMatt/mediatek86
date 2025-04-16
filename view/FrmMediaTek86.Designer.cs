@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMediatek86));
             this.dgvPersonnel = new System.Windows.Forms.DataGridView();
             this.gbxPersonnel = new System.Windows.Forms.GroupBox();
             this.gbxAbsences = new System.Windows.Forms.GroupBox();
@@ -377,6 +378,7 @@
             this.Controls.Add(this.btnModifPersonnel);
             this.Controls.Add(this.gbxAbsences);
             this.Controls.Add(this.gbxPersonnel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmMediatek86";
             this.Text = "MediaTek86";
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersonnel)).EndInit();

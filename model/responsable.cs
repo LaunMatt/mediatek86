@@ -17,8 +17,8 @@ namespace mediatek86.model
         /// <summary>
         /// Valorise les propriétés
         /// </summary>
-        /// <param name="login"></param>
-        /// <param name="pwd"></param>
+        /// <param name="login">login du responsable</param>
+        /// <param name="pwd">mot de passe du responsable</param>
         public Responsable(string login, string pwd)
         {
             this.Login = login;

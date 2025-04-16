@@ -17,8 +17,8 @@ namespace mediatek86.model
         /// <summary>
         /// Valorise les propriétés
         /// </summary>
-        /// <param name="idmotif"></param>
-        /// <param name="libelle"></param>
+        /// <param name="idmotif">identifiant du motif</param>
+        /// <param name="libelle">libelle du motif</param>
         public Motif(int idmotif, string libelle)
         {
             this.Idmotif = idmotif;

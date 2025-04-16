@@ -9,6 +9,13 @@ using mediatek86.model;
 namespace mediatek86.controller
 {
     /// <summary>
+    /// Package controller
+    /// </summary>
+    internal class NamespaceDoc
+    {
+
+    }
+    /// <summary>
     /// Contrôleur de FrmMediatek86
     /// </summary>
     public class FrmMediatek86Controller
@@ -62,6 +69,7 @@ namespace mediatek86.controller
         /// <summary>
         /// Récupère et retourne les infos des absences
         /// </summary>
+        /// <param name="idpersonnelselect">identifiant du personnel sélectionné</param>
         /// <returns>liste des absences</returns>
         public List<Absence> GetLesAbsences(int idpersonnelselect)
         {
@@ -107,7 +115,7 @@ namespace mediatek86.controller
         /// <summary>
         /// Demande de suppression des absences du personnel lors de la suppression de ce dernier
         /// </summary>
-        /// <param name="personnel">objet personnel à supprimer</param>
+        /// <param name="personnel">objet personnel dont les absences sont à supprimer</param>
         public void DelAbsencesPersonnel(Personnel personnel)
         {
             personnelAccess.DelAbsencesPersonnel(personnel);
@@ -116,7 +124,7 @@ namespace mediatek86.controller
         /// <summary>
         /// Demande d'ajout d'une absence
         /// </summary>
-        /// <param name="absence">objet personnel à ajouter</param>
+        /// <param name="absence">objet absence à ajouter</param>
         public void AddAbsence(Absence absence)
         {
             absenceAccess.AddAbsence(absence);
@@ -126,6 +134,7 @@ namespace mediatek86.controller
         /// Demande de modification d'une absence
         /// </summary>
         /// <param name="absence">objet absence à modifier</param>
+        /// <param name="ancienneDateDebut">objet ancienneDateDebut à modifier</param>
         public void UpdateAbsence(Absence absence, DateTime ancienneDateDebut)
         {
             absenceAccess.UpdateAbsence(absence, ancienneDateDebut);

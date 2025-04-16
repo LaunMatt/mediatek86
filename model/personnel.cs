@@ -14,12 +14,12 @@ namespace mediatek86.model
         /// <summary>
         /// Valorise les propriétés
         /// </summary>
-        /// <param name="idpersonnel"></param>
-        /// <param name="nom"></param>
-        /// <param name="prenom"></param>
-        /// <param name="tel"></param>
-        /// <param name="mail"></param>
-        /// <param name="service"></param>
+        /// <param name="idpersonnel">identifiant du personnel</param>
+        /// <param name="nom">nom du personnel</param>
+        /// <param name="prenom">prénom du personnel</param>
+        /// <param name="tel">téléphone du personnel</param>
+        /// <param name="mail">mail du personnel</param>
+        /// <param name="service">service du personnel</param>
         public Personnel(int idpersonnel, string nom, string prenom, string tel, string mail, Service service)
         {
             this.Idpersonnel = idpersonnel;

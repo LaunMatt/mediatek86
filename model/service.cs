@@ -17,8 +17,8 @@ namespace mediatek86.model
         /// <summary>
         /// Valorise les propriétés
         /// </summary>
-        /// <param name="idservice"></param>
-        /// <param name="nom"></param>
+        /// <param name="idservice">identifiantdu service</param>
+        /// <param name="nom">nom du service</param>
         public Service(int idservice, string nom)
         {
             this.Idservice = idservice;

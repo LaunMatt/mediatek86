@@ -29,7 +29,8 @@ namespace mediatek86.dal
         /// <summary>
         /// Récupère et retourne les absences
         /// </summary>
-        /// <returns>liste du personnel</returns>
+        /// <param name="idpersonnelselect">identifiant du personnel sélectionné</param>
+        /// <returns>liste des absences</returns>
         public List<Absence> GetLesAbsences(int idpersonnelselect)
         {
             List<Absence> lesAbsences = new List<Absence>();
@@ -89,11 +90,12 @@ namespace mediatek86.dal
                 }
             }
         }
-        
+
         /// <summary>
         /// Demande de modification d'une absence
         /// </summary>
         /// <param name="absence">objet absence à modifier</param>
+        /// <param name="ancienneDateDebut">objet ancienneDateDebut à modifier</param>
         public void UpdateAbsence(Absence absence, DateTime ancienneDateDebut)
         {
             if (access.Manager != null)

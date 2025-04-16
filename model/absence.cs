@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 namespace mediatek86.model
 {
     /// <summary>
+    /// Package model
+    /// </summary>
+    internal class NamespaceDoc
+    {
+
+    }
+    /// <summary>
     /// Classe traitant l'ensemble des absences de la base de données mediatek86 et leurs champs.
     /// </summary>
     public class Absence
@@ -14,10 +21,10 @@ namespace mediatek86.model
         /// <summary>
         /// Valorise les propriétés
         /// </summary>
-        /// <param name="idpersonnel"></param>
-        /// <param name="datedebut"></param>
-        /// <param name="datefin"></param>
-        /// <param name="motif"></param>
+        /// <param name="idpersonnel">identifiant du personnel de l'absence</param>
+        /// <param name="datedebut">date de début de l'absence</param>
+        /// <param name="datefin">date de fin de l'absence</param>
+        /// <param name="motif">motif de l'absence</param>
         public Absence(int idpersonnel, DateTime datedebut, DateTime datefin, Motif motif)
         {
             this.Idpersonnel = idpersonnel;
